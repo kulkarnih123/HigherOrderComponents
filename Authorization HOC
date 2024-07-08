@@ -1,0 +1,20 @@
+import React from 'react';
+import { Redirect } from 'react-router-dom';
+
+function withAuthorization(WrappedComponent) {
+  return function WithAuthorization({ isAuthenticated, ...props }) {
+    if (!isAuthenticated) {
+      return <Redirect to="/login" />;
+    }
+    return <WrappedComponent {...props} />;
+  };
+}
+
+function PrivateComponent() {
+  return <div>Private Content</div>;
+}
+
+const PrivateComponentWithAuthorization = withAuthorization(PrivateComponent);
+
+
+<PrivateComponentWithAuthorization isAuthenticated={false} />;

@@ -1,0 +1,19 @@
+import React from 'react';
+
+function withLoading(WrappedComponent) {
+  return function WithLoading({ isLoading, ...props }) {
+    if (isLoading) {
+      return <p>Loading...</p>;
+    }
+    return <WrappedComponent {...props} />;
+  };
+}
+
+function DataComponent({ data }) {
+  return <div>Data: {data}</div>;
+}
+
+const DataComponentWithLoading = withLoading(DataComponent);
+
+
+<DataComponentWithLoading isLoading={true} data="Sample data" />;

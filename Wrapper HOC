@@ -1,0 +1,21 @@
+import React from 'react';
+
+function withExtraInfo(WrappedComponent) {
+  return function WithExtraInfo(props) {
+    return (
+      <div>
+        <p>This is extra info</p>
+        <WrappedComponent {...props} />
+      </div>
+    );
+  };
+}
+
+function BasicComponent() {
+  return <div>Basic Component</div>;
+}
+
+const EnhancedComponent = withExtraInfo(BasicComponent);
+
+
+<EnhancedComponent />;
